@@ -6,17 +6,17 @@
   <b-col md="8">
       <div>
     <b-form>
-   
-   <b-button type="button" variant="success"  @click="addItem">Add Education</b-button>
-          
-  <mdb-card class="card-body" style="margin-top: 1rem;" v-for="item in educationForm.education" v-bind:key="item.id">
-    <mdb-card-title>Educational Qualification</mdb-card-title>
 
+   <b-button type="button" variant="success"  @click="addItem">Add Education</b-button>
+<!--added index to track every form with its index.-->
+  <mdb-card class="card-body" style="margin-top: 1rem;" v-for="(item, index) in educationForm.education" v-bind:key="item.id">
+    <mdb-card-title>Educational Qualification</mdb-card-title>
+<!--made sure every form is bound to its right form object using the index-->
     <div class="flex-row">
-       <mdb-input label="School Name" v-model="educationForm.education.schoolName" size="lg" required/> 
-      <mdb-input label="Year Started" v-model="educationForm.education.yearStart" size="lg" required/> 
-      <mdb-input label="Year Ended" v-model="educationForm.education.yearEnd" size="lg" required/> 
-      <mdb-input label="Qualification Earned" v-model="educationForm.education.qualificationEarned" size="lg" required/> 
+       <mdb-input label="School Name" v-model="educationForm.education[index].schoolName" size="lg" required/>
+      <mdb-input label="Year Started" v-model="educationForm.education[index].yearStart" size="lg" required/>
+      <mdb-input label="Year Ended" v-model="educationForm.education[index].yearEnd" size="lg" required/>
+      <mdb-input label="Qualification Earned" v-model="educationForm.education[index].qualificationEarned" size="lg" required/>
     </div>
   </mdb-card>
 
@@ -26,18 +26,18 @@
 
      <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ educationForm }}</pre>
-    </b-card> 
+    </b-card>
   </div>
   </b-col>
   </b-row>
   </div>
 </template>
 
-<script> 
+<script>
 import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput } from 'mdbvue';
 
   export default {
-    
+
     name: 'new-artisan',
      components: {
       mdbCard,
@@ -45,7 +45,7 @@ import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput
       mdbCardGroup,
       mdbCardTitle,
       mdbCardText,
-      mdbInput    
+      mdbInput
      },
     data() {
 
@@ -60,16 +60,16 @@ import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput
           }]
           }
       }
-       
+
     },
     methods: {
 
-      saveEducation() { 
+      saveEducation() {
         //this.educationForm._id = this.personaId;
-       // this.addEducation(this.educationForm).then(e => { 
+       // this.addEducation(this.educationForm).then(e => {
        //   this.$bvModal.msgBoxOk('Artisan Profile Education Submited. Click the Next Button to proceed')
-       // });  
-      }, 
+       // });
+      },
       addItem() {
         this.educationForm.education.push({
           schoolName: this.educationForm.education.schoolName,
@@ -80,7 +80,7 @@ import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput
       }
 
     }
-     
+
 }
 
 </script>
