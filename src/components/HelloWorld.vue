@@ -10,7 +10,11 @@
    <b-button type="button" variant="success"  @click="addItem">Add Education</b-button>
 <!--added index to track every form with its index.-->
   <mdb-card class="card-body" style="margin-top: 1rem;" v-for="(item, index) in educationForm.education" v-bind:key="item.id">
-    <mdb-card-title>Educational Qualification</mdb-card-title>
+    <mdb-card-title>Educational Qualification {{index + 1}}
+      <button v-if="index != 0" @click="removeEducation(index)" type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    </mdb-card-title>
 <!--made sure every form is bound to its right form object using the index-->
     <div class="flex-row">
        <mdb-input label="School Name" v-model="educationForm.education[index].schoolName" size="lg" required/>
@@ -63,7 +67,9 @@ import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput
 
     },
     methods: {
-
+      removeEducation(index) {
+        this.educationForm.education.splice(index,1)
+      },
       saveEducation() {
         //this.educationForm._id = this.personaId;
        // this.addEducation(this.educationForm).then(e => {
