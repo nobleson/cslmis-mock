@@ -68,6 +68,7 @@ import { mdbCard, mdbCardBody, mdbCardTitle, mdbCardText, mdbCardGroup, mdbInput
     },
     methods: {
       removeEducation(index) {
+        //you can warn the user before remove the education qualification
         this.educationForm.education.splice(index,1)
       },
       saveEducation() {
